@@ -179,3 +179,110 @@ terminal command: `go mod init github.com/gpt_chat/chat_service`
 * model.go: Representa o modelo do GPT, gpt 3.5, gpt turbo, etc.
 
 
+## golang
+
+### O que é Go?
+
+Go, também conhecido como Golang, é uma linguagem de programação desenvolvida pela Google. É conhecida por sua simplicidade, eficiência e suporte a concorrência, tornando-a ideal para desenvolvimento de sistemas e aplicações em rede.
+
+### Instalação
+
+1. **Instalar o Go**: Acesse o site oficial [Go Installation](https://go.dev/doc/install) e siga as instruções para o seu sistema operacional.
+2. **Verificar a instalação**: Após a instalação, você pode verificar se o Go foi instalado corretamente executando o seguinte comando no terminal:
+   ```bash
+   go version
+   ```
+
+### Estrutura de Diretórios
+
+A estrutura típica de um projeto Go pode ser organizada da seguinte forma:
+
+/my-go-project
+├── /cmd # Contém os comandos principais da aplicação
+│ └── /myapp # Diretório para o aplicativo principal
+├── /internal # Código que não deve ser acessível fora do módulo
+├── /pkg # Código que pode ser compartilhado entre projetos
+├── /api # Definições de API (se aplicável)
+├── /configs # Arquivos de configuração
+├── /scripts # Scripts de automação
+├── /test # Testes
+└── go.mod # Arquivo de módulo Go
+
+
+
+### Comandos Comuns
+
+- **Inicializar um módulo**:
+  ```bash
+  go mod init <module-name>
+  ```
+
+- **Adicionar uma dependência**:
+  ```bash
+  go get <package-name>
+  ```
+
+- **Executar um arquivo Go**:
+  ```bash
+  go run <file.go>
+  ```
+
+- **Compilar um arquivo Go**:
+  ```bash
+  go build <file.go>
+  ```
+
+- **Executar testes**:
+  ```bash
+  go test ./...
+  ```
+
+- **Formatar código**:
+  ```bash
+  go fmt ./...
+  ```
+
+### Estruturas de Dados Comuns
+
+- **Structs**: Estruturas são usadas para criar tipos de dados compostos.
+  ```go
+  type Person struct {
+      Name string
+      Age  int
+  }
+  ```
+
+- **Interfaces**: Definem um conjunto de métodos que um tipo deve implementar.
+  ```go
+  type Animal interface {
+      Speak() string
+  }
+  ```
+
+### Concorrência
+
+Go possui suporte nativo para concorrência através de goroutines e canais.
+
+- **Goroutines**: Funções que podem ser executadas concorrentemente.
+  ```go
+  go myFunction()
+  ```
+
+- **Canais**: Usados para comunicação entre goroutines.
+  ```go
+  ch := make(chan int)
+  go func() {
+      ch <- 42
+  }()
+  value := <-ch
+  ```
+
+### Testes
+
+Os testes em Go são escritos em arquivos que terminam com `_test.go`. Você pode usar o pacote `testing` para criar testes.
+
+
+### libs usadas
+
+https://github.com/pkoukk/tiktoken-go
+

@@ -5,8 +5,11 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/sashabaranov/go-openai"
 
-	tiktoken_go "github.com/j178/tiktoken-go"
+	// ajuste o caminho conforme necessário
+
+	countToken "github.com/gpt_chat/chat_service/internal/utils"
 )
 
 type Message struct {
@@ -19,7 +22,15 @@ type Message struct {
 }
 
 func NewMessage(role, content string, model *Model) (*Message, error) {
-	totalTokens := tiktoken_go.CountTokens(model.GetModelName(), content)
+	messages := []openai.ChatCompletionMessage{
+		{
+			Role:    role,
+			Content: content,
+		},
+	}
+
+	totalTokens := countToken.NumTokensFromMessages(messages, model.Name) // Use a função para contar tokens do conteúdo
+
 	msg := &Message{
 		ID:        uuid.New().String(),
 		Role:      role,

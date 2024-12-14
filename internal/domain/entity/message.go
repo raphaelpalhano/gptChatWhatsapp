@@ -2,6 +2,7 @@ package entity
 
 import (
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/google/uuid"
@@ -39,6 +40,10 @@ func NewMessage(role, content string, model *Model) (*Message, error) {
 		Model:     model,
 		CreatedAt: time.Now(),
 	}
+
+	fmt.Printf("MSG CONTENT:\nID: %s\nRole: %s\nContent: %s\nTokens: %d\nModel: %s\nCreatedAt: %s\n",
+		msg.ID, msg.Role, msg.Content, msg.Tokens, msg.Model.Name, msg.CreatedAt)
+
 	if err := msg.Validate(); err != nil { // return msg in null if have message erro or return msg
 		return nil, err
 	}

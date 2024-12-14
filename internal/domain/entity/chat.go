@@ -24,7 +24,7 @@ type Chat struct {
 	UserID               string
 	InitialSystemMessage *Message
 	Messages             []*Message
-	ErasedMessages       []*Message // messages deleted for create space for more tokens
+	ErasedMessages       []*Message
 	Status               string
 	TokenUsage           int
 	Config               *ChatConfig

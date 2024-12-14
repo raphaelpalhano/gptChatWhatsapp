@@ -179,6 +179,47 @@ terminal command: `go mod init github.com/gpt_chat/chat_service`
 * model.go: Representa o modelo do GPT, gpt 3.5, gpt turbo, etc.
 
 
+
+## SQL estrutura
+
+**tool:** [sqlc](https://docs.sqlc.dev/en/stable/overview/install.html)
+
+use file
+
+~~~yaml
+version: 2
+
+sql:
+  - schema: "sql/migrations"
+    queries: "sql/queries"
+    engine: "mysql"
+    gen:
+      go:
+        package: "db"
+        out: "internal/infra/db"
+        overrides:
+          - db_type: "decimal"
+            go_type: "float64"
+~~~
+
+comandos
+
+docker run --rm -v $(pwd):/src -w /src sqlc/sqlc generate
+
+sqlc generate
+
+
+### Migrations golang
+
+golang-migrate
+https://github.com/golang-migrate/migrate/tree/master/cmd/migrate
+
+**create migration**
+migrate create -ext=mysql -dir=sql/migrations -seq init
+
+OBS: Foram criados dois arquivo, um up quando é feito migração, e down executado quando vai baixar o código
+
+
 ## golang
 
 ### O que é Go?
@@ -286,3 +327,21 @@ Os testes em Go são escritos em arquivos que terminam com `_test.go`. Você pod
 
 https://github.com/pkoukk/tiktoken-go
 
+
+## Docker
+
+Remove all containers
+
+docker rm -f $(docker ps -a -q)
+
+
+
+## Webserver
+
+Ele vai permitir que através de rest possamos falar com o chat GPT.
+
+
+
+## Groq for golang
+
+https://github.com/hasitpbhatt/groq-go
